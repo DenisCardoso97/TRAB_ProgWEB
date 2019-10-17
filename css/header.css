@@ -22,3 +22,12 @@
 	#loginECadastro {
 		margin-left: 80%;
 	}
+	#btnLogin {
+		background-color: #b3003b;
+		font-weight: bold;
+		color: white;
+		cursor:pointer;
+		width: 120px;
+		height: 40px;
+		border: none;
+	}

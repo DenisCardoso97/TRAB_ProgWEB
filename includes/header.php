@@ -6,8 +6,8 @@
 	</div>
 	<div id="barra1">
 		<div id= "loginECadastro">
-			<button onclick="window.location.href='login.html'" id="btn">Login</button>
 			<button onclick="window.location.href='cadastrar.html'" id="btn">Cadastrar</button>
+			<button onclick="window.location.href='login.html'" id="btnLogin">Login</button>
 		</div>
 	</div>
 	<div id="barra2">
