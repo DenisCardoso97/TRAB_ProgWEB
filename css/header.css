@@ -1,0 +1,24 @@
+#imagem img{
+		color: white;
+		max-width:100px;
+		margin-right: 250px;
+		margin-left: 250px;
+		filter: brightness(5);
+	}
+	#btn {
+		color: white;
+		background: none;
+		cursor:pointer;
+		width: 120px;
+		height: 40px;
+		border: none;
+	}
+	#barra1 {
+		background-color: #000066;
+	}
+	#barra2 {
+		background-color: #000099;
+	}
+	#loginECadastro {
+		margin-left: 80%;
+	}
