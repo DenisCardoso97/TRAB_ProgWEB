@@ -6,7 +6,7 @@
 	    <style type="text/css">
 	    	#diva {
 				margin-right: auto;
-		    	margin-left: 28%;
+		    	margin-left: 30%;
 			}
 	    </style>
 	</head>

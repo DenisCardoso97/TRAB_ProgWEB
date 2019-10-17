@@ -1,17 +1,11 @@
-#imagem img{
+	
+	#imagem img{
+		position: absolute;
 		color: white;
-		max-width:100px;
-		margin-right: 250px;
-		margin-left: 250px;
+		margin-top: -2px;
+		max-width:80px;
+		margin-left: 330px;
 		filter: brightness(5);
-	}
-	#btn {
-		color: white;
-		background: none;
-		cursor:pointer;
-		width: 120px;
-		height: 40px;
-		border: none;
 	}
 	#barra1 {
 		background-color: #000066;
@@ -19,15 +13,37 @@
 	#barra2 {
 		background-color: #000099;
 	}
-	#loginECadastro {
-		margin-left: 80%;
+	#botoesBarra1 {
+		margin-left: 58%;
 	}
+	#botoesBarra2 {
+		margin-left: 50%;
+	}
+
+	/* Botões*/
+	#btn {
+		color: white;
+		background: none;
+		cursor:pointer;
+		width: 120px;
+		height: 80px;
+		border: none;
+	}
+	#btnCadastro {
+		color: white;
+		background: none;
+		cursor:pointer;
+		width: 120px;
+		height: 35px;
+		border: none;
+	} 
 	#btnLogin {
 		background-color: #b3003b;
 		font-weight: bold;
 		color: white;
 		cursor:pointer;
 		width: 120px;
-		height: 40px;
+		height: 35px;
 		border: none;
 	}
+	/* Fim botões*/
