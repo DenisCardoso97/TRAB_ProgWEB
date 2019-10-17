@@ -1,12 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/header.css">
-<head>
-		<meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	    <link rel="stylesheet" href="css/login.css">
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-	    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+<?php include("head.php"); ?>
 <header>
 	<div>
 		
@@ -20,8 +13,7 @@
 	<div id="barra2">
 		<a id="imagem"><img src="https://cdn.icon-icons.com/icons2/67/PNG/512/plane_takeoff_13263.png">
 		<button onclick="window.location.href='voos.php'" id="btn">Voos e destinos</button>
-		<button onclick="window.location.href='admnistrar.php'" id="btn">Administrar voos</button>
-		<button onclick="window.location.href='informações.php'" id="btn">Informações de viagem</button>
-		<button onclick="window.location.href='avioesDoForro.php'" id="btn">Aviões do Forrô</button>
+		<button onclick="window.location.href='administrar.php'" id="btn">Administrar voos</button>
+		<button onclick="window.location.href='informacoes.php'" id="btn">Informações de viagem</button>
 	</div>
 </header>
