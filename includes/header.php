@@ -11,11 +11,13 @@
 		</div>
 	</div>
 	<div id="barra2">
-			<a id="imagem"><img src="https://cdn.icon-icons.com/icons2/67/PNG/512/plane_takeoff_13263.png">
+		<div id="imagem">
+			<img src="https://cdn.icon-icons.com/icons2/67/PNG/512/plane_takeoff_13263.png">
+		</div>
 		<div id="botoesBarra2">
-			<button onclick="window.location.href='voos.php'" id="btn">Voos e destinos</button>
-			<button onclick="window.location.href='administrar.php'" id="btn">Administrar voos</button>
-			<button onclick="window.location.href='informacoes.php'" id="btn">Informações de viagem</button>
+			<button onclick="window.location.href='voos.php'" id="btn">Voos <br>e destinos</button>
+			<button onclick="window.location.href='administrar.php'" id="btn">Administrar <br>voos</button>
+			<button onclick="window.location.href='informacoes.php'" id="btn">Informações <br>de viagem</button>
 		</div>
 	</div>
 </header>
