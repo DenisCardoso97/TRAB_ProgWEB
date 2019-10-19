@@ -6,13 +6,13 @@
 	</div>
 	<div id="barra1">
 		<div id= "botoesBarra1">
-			<button onclick="window.location.href='cadastrar.html'" id="btnCadastro">Cadastrar</button>
-			<button onclick="window.location.href='login.html'" id="btnLogin">Login</button>
+			<button onclick="window.location.href='cadastrar.php'" id="btnCadastro">Cadastrar</button>
+			<button onclick="window.location.href='login.php'" id="btnLogin">Login</button>
 		</div>
 	</div>
 	<div id="barra2">
 		<div id="imagem">
-			<img src="https://cdn.icon-icons.com/icons2/67/PNG/512/plane_takeoff_13263.png">
+			<img onclick="window.location.href='index.php'" style="cursor:pointer;" src="https://cdn.icon-icons.com/icons2/67/PNG/512/plane_takeoff_13263.png">
 		</div>
 		<div id="botoesBarra2">
 			<button onclick="window.location.href='voos.php'" id="btn">Voos <br>e destinos</button>

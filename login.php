@@ -7,13 +7,15 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 <body>
+    <div>
+        <?php include("includes/header.php"); ?>
+    </div>
     
     <div class="container-fluid bg">
 
@@ -22,7 +24,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <!-- inicio form -->
                 <form class="form-container rounded">
-                    <h1>Register form</h1>
+                    <h1>Login form</h1>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -39,7 +41,7 @@
                     <button type="submit" class="btn btn-success btn-block">Submit</button>
 
                     <div clas>
-                        <span>Já tem uma conta? <a href="login.html">Logue-se</a></span>
+                        <span>Não é cadastrado? <a href="cadastrar.php">Cadastre-se</a></span>
                         <a style="margin-left: 250px" href="index.php">Inicio</a>
                     </div>
                 </form>
