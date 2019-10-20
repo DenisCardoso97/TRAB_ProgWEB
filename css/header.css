@@ -1,24 +1,10 @@
-	#imagem img{
-		position: absolute;
-		color: white;
-		margin-top: -2px;
-		max-width:80px;
-		margin-left: 330px;
-		filter: brightness(5);
-	}
 	#barra1 {
 		background-color: #000066;
 	}
 	#barra2 {
 		background-color: #000099;
 	}
-	#botoesBarra1 {
-		margin-left: 58%;
-	}
-	#botoesBarra2 {
-		margin-left: 50%;
-	}
-
+	
 	/* Botões*/
 	#btn {
 		color: white;
