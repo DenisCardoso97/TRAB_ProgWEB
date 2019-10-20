@@ -13,9 +13,9 @@
 			</div>
 			<link rel="stylesheet" type="text/css" href="css/slideshow.css">
 			<div>
-				<img src="images/img1.jpg" class="mySlides">
-				<img src="images/img2.jpg" class="mySlides">
-				<img src="images/img3.jpg" class="mySlides">
+				<img src="images/img1.jpg" class="mySlides img-fluid">
+				<img src="images/img2.jpg" class="mySlides img-fluid">
+				<img src="images/img3.jpg" class="mySlides img-fluid">
 			</div>
 			<?php include("includes/script.php"); ?>
 		</body>

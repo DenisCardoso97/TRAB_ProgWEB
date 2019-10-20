@@ -1,5 +1,4 @@
-.mySlides {
+#mySlides {
 	display: none;
 	position: absolute;
-	max-width: auto;
 }
