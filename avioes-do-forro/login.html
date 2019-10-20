@@ -7,13 +7,34 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="css/login.css">
-
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 <body>
     
+    <header>
+
+            <nav class="nav1 navbar navbar-expand-lg navbar-dark fixed-top">
+                <a class="navbar-brand" href="index.html">Aviões do forro</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav d-flex justify-content-end">
+                        <a class="nav-item nav-link " href="passagem.html">Passagens<span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="login.html">Login </a>
+                        <a class="nav-item nav-link" href="cadastro.html">Cadastro</a>
+                        <a class="nav-item nav-link " href="sobre.html" tabindex="-1">Sobre nós</a>
+                    </div>
+                </div>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </header>
     <div class="container-fluid bg">
 
         <div class="row">
@@ -38,7 +59,7 @@
                     <button type="submit" class="btn btn-success btn-block">Submit</button>
 
                     <div clas>
-                        <span>Não é cadastrado? <a href="">Cadastre-se</a></span>
+                        <span>Não é cadastrado? <a href="cadastro.html">Cadastre-se</a></span>
                     </div>
                 </form>
                 <!-- /fim form -->
