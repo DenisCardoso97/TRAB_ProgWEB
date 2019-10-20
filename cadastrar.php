@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+    <title>Cadastrar</title>
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 <body>
     <div>
@@ -44,7 +35,6 @@
 
                     <div clas>
                         <span>Já tem uma conta? <a href="login.php">Logue-se</a></span>
-                        <a style="margin-left: 250px" href="index.php">Inicio</a>
                     </div>
                 </form>
                 <!-- /fim form -->
