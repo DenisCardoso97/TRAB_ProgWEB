@@ -12,7 +12,6 @@
 <body>
     <?php
       include("includes/session.php");
-
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $stmt = $db->prepare("INSERT INTO Usuarios (email,cpf,name,password,birthdate,phone) VALUES (?,?,?,?,?,?)");
         // $stmt->bindValue(1, $_POST["email"], SQLITE3_TEXT);
@@ -23,7 +22,6 @@
         // $stmt->bindValue(6, $_POST["phone"], SQLITE3_TEXT);
         
         // TODO: Inserção no banco, do cadastro.
-
         try {
           // $result = $stmt->execute();
           header("Location: login.php");
