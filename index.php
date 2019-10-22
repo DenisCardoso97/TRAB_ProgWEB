@@ -21,5 +21,7 @@
 			</div>
 			<!-- Script para slideshow -->
 			<?php include("includes/script.php"); ?>
+			<!-- Footer -->
+			<?php include("includes/footer.php") ?>
 		</body>
 </html>
