@@ -1,45 +1,24 @@
-<?php
-  define("TITLE", "Cadastrar");
-  include_once("includes/config.php");
-?>
+<!-- Styles e Scrips -->
+<?php include("includes/head.php") ?>
 
+<!-- Tela de cadastro -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <title>Cadastrar</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
-    <?php
-      include("includes/session.php");
-      if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // $stmt = $db->prepare("INSERT INTO Usuarios (email,cpf,name,password,birthdate,phone) VALUES (?,?,?,?,?,?)");
-        // $stmt->bindValue(1, $_POST["email"], SQLITE3_TEXT);
-        // $stmt->bindValue(2, $_POST["cpf"], SQLITE3_TEXT);
-        // $stmt->bindValue(3, strtolower($_POST["name"]), SQLITE3_TEXT);
-        // $stmt->bindValue(4, openssl_encrypt($_POST["password"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
-        // $stmt->bindValue(5, $_POST["birthdate"], SQLITE3_TEXT);
-        // $stmt->bindValue(6, $_POST["phone"], SQLITE3_TEXT);
-        
-        // TODO: Inserção no banco, do cadastro.
-        try {
-          // $result = $stmt->execute();
-          header("Location: login.php");
-          exit();
-        } catch (Throwable $th) {
-          echo "<script>alert('CPF já cadastrado!');</script>";
-        }
-      }
-    ?>
+    <!-- Header das páginas -->
     <div>
         <?php include("includes/header.php"); ?>  
     </div>
-    
-    <div class="container-fluid img-fluid bg">
 
+    <div class="container-fluid img-fluid bg">
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12"></div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-3 col-sm-4 col-xs-12"></div>
+            <div class="col-md-6 col-sm-4 col-xs-12">
                 <!-- inicio form -->
                 <form method="POST" class="form-container rounded">
                     <h1>Register form</h1>
@@ -67,7 +46,6 @@
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</small>
                     </div>
 
                     <div class="form-group">
@@ -81,8 +59,8 @@
                     </div>
 
                     <button type="submit" class="btn btn-success btn-block">Submit</button>
-
-                    <div clas>
+                    
+                    <div>
                         <span>Já tem uma conta? <a href="login.php">Logue-se</a></span>
                     </div>
                 </form>
