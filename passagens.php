@@ -13,10 +13,8 @@
 
 	<div class="container">      
         <h1>Passagens</h1>
-        <div style="display: flex; justify-content: center; align-items: center; height: 600px; background-color: blue;">
-            <form action="">
-                <label for="passagem">Passagem:</label>
-                <input type="text" id="passagem" placeholder="Passagem">
+        <div>
+            <form>     
             </form>
         </div>
     </div>

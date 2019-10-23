@@ -1,6 +1,8 @@
 <!-- Styles e Scrips -->
 <?php include("includes/head.php") ?>
 
+<?php include_once("includes/config.php"); ?>
+
 <!-- Tela de login -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,12 +10,33 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
-
-<body>
     <!-- Header das páginas -->
     <div>
         <?php include("includes/header.php"); ?>
     </div>
+<body>
+     <?php
+          if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if (isset($_POST["email"]) && isset($_POST["password"])) {
+              $stmt = $db->prepare("SELECT * FROM Usuarios WHERE email = ? AND password = ?");
+              $stmt->bindValue(1, strtolower($_POST["email"]), SQLITE3_TEXT);
+              $stmt->bindValue(2, openssl_encrypt($_POST["password"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
+              $usuario = $stmt->execute()->fetchArray();
+              if ($usuario) {
+                $_SESSION["usuario"] = $usuario;
+                header("Location: index.php");
+                exit();
+              }
+            }
+            echo "<script>alert('Email ou senha invalidos!');</script>";
+          } else {
+            if (isset($_SESSION["usuario"])) {
+              header("Location: index.php");
+              die();
+            }
+          }
+        ?>
+
 
     <div class="container-fluid bg">
         <div class="row">
@@ -21,21 +44,21 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <!-- inicio form -->
                 <form method="POST" class="form-container rounded">
-                    <h1>Login form</h1>
+                    <h1 class="text-center">Login</h1>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</small>
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-light">Jamais iremos compartilhar seu email com ninguém.</small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember</label>
+                        <label class="form-check-label" for="exampleCheck1">Lembrar login</label>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    <button type="submit" class="btn btn-success btn-block">Entrar</button>
 
                     <div clas>
                         <span>Não é cadastrado? <a href="cadastrar.php">Cadastre-se</a></span>

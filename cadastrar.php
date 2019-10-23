@@ -1,6 +1,8 @@
 <!-- Styles e Scrips -->
 <?php include("includes/head.php") ?>
 
+<?php include_once("includes/config.php"); ?>
+
 <!-- Tela de cadastro -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,10 +12,32 @@
 </head>
 
 <body>
-    <!-- Header das páginas -->
-    <div>
-        <?php include("includes/header.php"); ?>  
-    </div>
+    <?php
+        include("includes/header.php");
+
+        if (isset($_SESSION["usuario"])) {
+            header("Location: index.php");
+            die();
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $stmt = $db->prepare("INSERT INTO Usuarios (email,cpf,name,password,birthdate,phone) VALUES (?,?,?,?,?,?)");
+            $stmt->bindValue(1, $_POST["email"], SQLITE3_TEXT);
+            $stmt->bindValue(2, $_POST["cpf"], SQLITE3_TEXT);
+            $stmt->bindValue(3, strtolower($_POST["name"]), SQLITE3_TEXT);
+            $stmt->bindValue(4, openssl_encrypt($_POST["password"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
+            $stmt->bindValue(5, $_POST["birthdate"], SQLITE3_TEXT);
+            $stmt->bindValue(6, $_POST["phone"], SQLITE3_TEXT);
+
+            try {
+              $result = $stmt->execute();
+              header("Location: login.php");
+              exit();
+            } catch (Throwable $th) {
+              echo "<script>alert('Email já cadastrado!');</script>";
+            }
+        }
+    ?>
 
     <div class="container-fluid img-fluid bg">
         <div class="row">
@@ -21,44 +45,44 @@
             <div class="col-md-6 col-sm-4 col-xs-12">
                 <!-- inicio form -->
                 <form method="POST" class="form-container rounded">
-                    <h1>Register form</h1>
+                    <h1 class="text-center">Cadastrar-se</h1>
 
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Complete Name">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nome completo">
                     </div>
 
                     <div class="form-group">
-                        <label for="birthdate">Birthdate</label>
-                        <input type="text" class="form-control" id="birthdate" placeholder="dd/mm/aaaa" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}">
+                        <label for="birthdate">Data de nascimento</label>
+                        <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="dd/mm/aaaa" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}">
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <label for="phone">Número de telefone celular</label>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Digite seu número de telefone celular">
                     </div>
 
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" class="form-control" id="cpf" placeholder="CPF">
+                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Entre com seu endereço de e-mail">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha">
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Confirm Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Confirm Password">
+                        <label for="password">Confirme sua senha</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Confirme sua Senha">
                     </div>
 
-                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
                     
                     <div>
                         <span>Já tem uma conta? <a href="login.php">Logue-se</a></span>
