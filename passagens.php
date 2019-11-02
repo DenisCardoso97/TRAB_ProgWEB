@@ -31,39 +31,50 @@
 	<div class="container">      
         <h1 style="text-align: center;">Passagens</h1>
         
-        <div class="">
-            <form >
-                <div>
-                    <label for="">origem</label>
-                    <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                        <option value="" disabled selected>- Selecione Origem - </option>
-                        <option value="campogrande ">Campo Grande</option>
-                        <option value="maringa">Maringa</option>
-                    </select>
-                </div>
+        <?php 
+ 
+            if (!isset($_POST['procurar'])) {
+                ?>
+                <div class="">
+                    <form method="POST">
+                        <div>
+                            <label for="">origem</label>
+                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                                <option value="" disabled selected>- Selecione Origem - </option>
+                                <option value="campogrande ">Campo Grande</option>
+                                <option value="maringa">Maringa</option>
+                            </select>
+                        </div>
 
-                <div>
-                    <label for="">destino</label>
-                    <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                        <option value="">- Selecione Destino - </option>
-                        <option value="campogrande ">Campo Grande</option>
-                        <option value="maringa">Maringa</option>
-                    </select>
-                </div>
+                        <div>
+                            <label for="">destino</label>
+                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                                <option value="">- Selecione Destino - </option>
+                                <option value="campogrande ">Campo Grande</option>
+                                <option value="maringa">Maringa</option>
+                            </select>
+                        </div>
 
-                <div>
-                    <label for="">Data da passagem</label>
-                    <input type="date">
-                </div>
+                        <div>
+                            <label for="">Data da passagem</label>
+                            <input type="date">
+                        </div>
 
-                <div>
-                    <button type="submit">Procurar</button>
-                </div>
+                        <div>
+                            <button type="submit" name="procurar">Procurar</button>
+                        </div>
 
                 <!-- Material input -->
-                
-            </form>
-        </div>
+    
+                </form>
+            </div> 
+            <?php
+            } else {
+                echo 'entrei 2';
+            }
+        ?>
+
+        
     </div>
     <!-- Footer -->
     <?php include("includes/footer.php") ?>
