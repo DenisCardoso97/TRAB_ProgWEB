@@ -60,8 +60,11 @@
                     </div>
                     <button type="submit" class="btn btn-success btn-block">Entrar</button>
 
-                    <div clas>
+                    <div>
                         <span>Não é cadastrado? <a href="cadastrar.php">Cadastre-se</a></span>
+                    </div>
+                    <div  style="margin-top: 60px; color: #e6e8e1; display: flex; justify-content: flex-end">
+                        <span><a href="#">Esqueceu a senha ?</a></span>
                     </div>
                 </form>
                 <!-- /fim form -->
