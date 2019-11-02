@@ -1,7 +1,6 @@
 <!-- Tela de passagens -->
 <!DOCTYPE html>
 <html>
-<?php include("includes/head.php"); ?>
 <head>
 	<title>Passagens</title>
 </head>

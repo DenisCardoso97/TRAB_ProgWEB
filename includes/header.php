@@ -22,7 +22,7 @@
       					$user = $_SESSION['usuario']; 	
   				?>
   				<div class="navbar-right">
-  					<span style="color: white">Olá: </span><a href="perfl.php"><strong><?php echo $user['name']; ?></strong></a>
+  					<span style="color: white">Olá: </span><a href="perfil.php"><strong><?php echo $user['name']; ?></strong></a>
   				</div>
   				<?php } ?>
   					<?php if (!isset($_SESSION['usuario'])) { ?>
