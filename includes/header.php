@@ -4,9 +4,10 @@
 <?php session_start(); ?>
 
 <!-- Header -->
+
 <header>
 	<div>
-		<nav class="nav1 navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="nav1 navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="opacity: 0.90;">
 			<a class="navbar-brand" href="index.php"><img src="images/plane.png" alt="" style="width:50px; heigth:50px;"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

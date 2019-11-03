@@ -14,6 +14,13 @@
     <div>
         <?php include("includes/header.php"); ?>
     </div>
+
+    <style>
+        .container {
+            min-height: 92vh;
+            margin-top: 77px;
+        }
+    </style>
 <body>
      <?php
           if ($_SERVER["REQUEST_METHOD"] === "POST") {

@@ -5,23 +5,42 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	    <title>Companhia Aérea - Aviões do Forró</title>
+		<title>Companhia Aérea - Aviões do Forró</title>
+		
+		<style>
+			body {
+				background: url("images/imagensPS1.jpg") no-repeat;
+			}
+
+			.container {
+				min-height: 92vh;
+				margin-top: 77px;
+			}
+
+			.message {
+				border-top: 3px solid black;
+				border-bottom: 3px solid black;
+				margin-bottom: 28px;
+				background-color: rgba(230, 255, 255, 0.3);
+				
+			}
+		</style>
 	</head>
 		<body>
 			<!-- Header das páginas -->
 			<div>
 				<?php include("includes/header.php"); ?>
 			</div>
-			<!-- Slideshow da página principal -->
-			<link rel="stylesheet" type="text/css" href="css/slideshow.css">
-			<div>
-				<img src="images/img1.jpg" class="mySlides img-fluid" style="width: 100%;" >
-				<img src="images/img2.jpg" class="mySlides img-fluid" style="width: 100%;">
-				<img src="images/img3.jpg" class="mySlides img-fluid" style="width: 100%;">
+
+			<!-- Body -->
+			<div class="container d-flex justify-content-center align-items-center bd-highlight">
+				<div class="message d-flex flex-column justify-content-center align-items-center bd-highlight shadow">
+					<h1 class="display-1">As melhores experiências</h1>
+					<h3><em>Viaje para onde quiser. E nem precisa de cartão de crédito</em></h3>
+				</div>
+				
 			</div>
-			<!-- Script para slideshow -->
-			<?php include("includes/script.php"); ?>
-			<!-- Footer -->
+			
 			<?php include("includes/footer.php") ?>
 		</body>
 </html>
