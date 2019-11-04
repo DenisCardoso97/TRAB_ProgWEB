@@ -8,18 +8,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
         .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            min-height: 92vh;
+            margin-top: 77px;
         }
 
-        
+        .form-div{
+			margin-bottom: 300px;
+		}
+
+        .passagens {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			background-color: rgba(230, 255, 255, 0.3);
+		}
+
+        .btnn {
+            margin-top: 15px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -27,43 +35,49 @@
 	<div>
         <?php include("includes/header.php"); ?>  
     </div>
-
-	<div class="container">      
-        <h1 style="text-align: center;">Passagens</h1>
-        
-        <div class="">
-            <form >
-                <div>
-                    <label for="">origem</label>
-                    <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                        <option value="" disabled selected>- Selecione Origem - </option>
-                        <option value="campogrande ">Campo Grande</option>
-                        <option value="maringa">Maringa</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="">destino</label>
-                    <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                        <option value="">- Selecione Destino - </option>
-                        <option value="campogrande ">Campo Grande</option>
-                        <option value="maringa">Maringa</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="">Data da passagem</label>
-                    <input type="date">
-                </div>
-
-                <div>
-                    <button type="submit">Procurar</button>
-                </div>
-
-                <!-- Material input -->
-                
-            </form>
+    <!-- justify-content-center align-items-center -->
+	<div class="container d-flex flex-column justify-content-between align-items-center">      
+        <div class="passagens">
+            <h6 class="display-4">Passagens</h6>
         </div>
+        <?php 
+            if (!isset($_POST['procurar'])) {
+                ?>
+                <div class="p-2">
+                    <form method="POST" class="form-div">
+                        <div>
+                            <label for="">origem</label>
+                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                                <option value="" disabled selected>- Selecione Origem - </option>
+                                <option value="campogrande ">Campo Grande</option>
+                                <option value="maringa">Maringa</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="">destino</label>
+                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                                <option value="">- Selecione Destino - </option>
+                                <option value="campogrande ">Campo Grande</option>
+                                <option value="maringa">Maringa</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <label for="">Data da passagem</label>
+                            <input type="date">
+                        </div>
+
+                        <div class="btnn d-flex flex-column">
+                            <button type="submit" class="btn btn-primary" name="procurar">Submit</button>
+                        </div>
+                    </form>
+                </div> 
+            <?php
+            } else {
+                echo 'entrei 2';
+            }
+            ?> 
     </div>
     <!-- Footer -->
     <?php include("includes/footer.php") ?>

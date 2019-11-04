@@ -9,6 +9,13 @@
 <head>
     <title>Cadastrar</title>
     <link rel="stylesheet" href="css/login.css">
+
+    <style>
+        .container {
+            min-height: 92vh;
+            margin-top: 77px;
+        }
+    </style>
 </head>
 
 <body>

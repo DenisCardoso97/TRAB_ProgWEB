@@ -4,6 +4,13 @@
 <?php include("includes/head.php"); ?>
 <head>
 	<title>Sobre - Aviões do Forró</title>
+
+    <style>
+        .container {
+            min-height: 92vh;
+            margin-top: 77px;
+        }
+    </style>
 </head>
 <body>
     <!-- Header das páginas -->
@@ -12,7 +19,10 @@
     </div>
 
     <div class="container">
-        <h1>SOBRE - Aviões do Forró</h1><br>
+        <div class="mb-5" style="text-align: center;">
+            <h1 class="display-2" >Aviões do Forró</h1>
+        </div>
+
          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit sollicitudin nibh non dictum. Vivamus eros tortor, dictum id justo eget, imperdiet aliquam nisl. Cras ultrices ac nulla quis scelerisque. Vivamus elit magna, dignissim in neque sed, porttitor auctor urna. Etiam sed urna euismod, dignissim diam sit amet, sagittis mi. Ut suscipit diam ipsum, id bibendum magna finibus a. Integer eu diam id tortor rutrum maximus. Donec justo elit, tristique nec turpis in, mattis dictum metus. Donec vel cursus orci. Phasellus ultricies dapibus velit id malesuada. Suspendisse potenti.
         </p>
@@ -26,6 +36,8 @@
             Curabitur sed sagittis arcu, quis faucibus nisl. Nullam in libero ante. Vivamus at lorem quis nunc congue hendrerit at in nunc. Fusce id dolor faucibus, laoreet lectus id, pellentesque erat. In sed malesuada magna. Curabitur in metus tincidunt, pretium lacus gravida, congue purus. Nulla lobortis rutrum mauris eu auctor. Suspendisse vel nunc ac mauris rutrum luctus sit amet sit amet erat. Integer ut ullamcorper eros. Morbi non dui augue. Vivamus a lacus facilisis mauris pellentesque pharetra in quis sapien. Nunc vitae vehicula eros.
         </p>
     </div>
+
+    heheheheh
     <!-- Footer -->
     <?php include("includes/footer.php") ?>
 </body>
