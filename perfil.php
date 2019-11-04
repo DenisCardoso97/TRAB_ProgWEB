@@ -46,7 +46,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary" name="salvar">Salvar</button>
 				<?php } ?>
-			</form>	
+			</form>	echo $passagem['modeloaviao'];
 	</div>
 </body>
 </html>
