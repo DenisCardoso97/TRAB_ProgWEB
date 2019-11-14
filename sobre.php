@@ -37,7 +37,6 @@
         </p>
     </div>
 
-    heheheheh
     <!-- Footer -->
     <?php include("includes/footer.php") ?>
 </body>

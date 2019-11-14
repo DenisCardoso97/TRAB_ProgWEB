@@ -69,6 +69,10 @@
 						<input class="form-control bg-white" type="password" name="Senha" value="">
 					</div>
 					<button type="submit" class="btn btn-danger" name="salvar">Salvar</button>
+					<?php if (isset($_POST['salvar'])) {
+						print("alterou tabela");
+					} ?>
+					<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
 				</form>	
 				<?php } ?>
 			</div>

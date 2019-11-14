@@ -1,3 +1,13 @@
+<?php include_once("includes/config.php"); ?>
+
+<?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['procurar'])) {
+        $Passagens = $db->query("
+        SELECT origem, destino, dataSaida FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."'
+        ");
+    }
+?>
+
 <!-- Tela de passagens -->
 <!DOCTYPE html>
 <html>
@@ -46,38 +56,64 @@
                 <div class="p-2">
                     <form method="POST" class="form-div">
                         <div>
-                            <label for="">origem</label>
-                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                            <label for="origem">Origem *</label>
+                            <select name="origem" class="browser-default custom-select custom-select-lg mb-3" required>
                                 <option value="" disabled selected>- Selecione Origem - </option>
-                                <option value="campogrande ">Campo Grande</option>
-                                <option value="maringa">Maringa</option>
+                                <option value="Campo Grande">Campo Grande</option>
+                                <option value="Maringa">Maringa</option>
                             </select>
                         </div>
 
                         <div>
-                            <label for="">destino</label>
-                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
+                            <label for="destino">Destino *</label>
+                            <select name="destino" class="browser-default custom-select custom-select-lg mb-3" required>
                                 <option value="">- Selecione Destino - </option>
-                                <option value="campogrande ">Campo Grande</option>
-                                <option value="maringa">Maringa</option>
+                                <option value="Campo Grande">Campo Grande</option>
+                                <option value="Maringa">Maringa</option>
                             </select>
                         </div>
 
                         <div class="d-flex flex-column">
-                            <label for="">Data da passagem</label>
-                            <input type="date">
+                            <label for="dataSaida">Data da passagem</label>
+                            <input type="date" name="dataSaida" required>
                         </div>
 
                         <div class="btnn d-flex flex-column">
-                            <button type="submit" class="btn btn-primary" name="procurar">Submit</button>
+                            <input type="hidden" name="procurar">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div> 
             <?php
-            } else {
-                echo 'entrei 2';
-            }
-            ?> 
+            } else { ?>
+               <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Origem</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Data de Saida</th>
+                    <th scope="col">Escolher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                      <?php 
+                        while($row = $Passagens->fetchArray()){
+                      ?>
+                        <tr>
+                          <td><?php echo $row['origem']; ?></td>
+                          <td><?php echo $row['destino']; ?></td>
+                          <td><?php echo $row['dataSaida'];?></td>
+                          <td>
+                            <form method="POST">
+                               <input type="hidden" name="escolher">
+                               <button type="submit">Escolher</button>
+                            </form>       
+                          </td> 
+                        </tr>
+                      <?php } ?>
+                </tbody>
+              </table>
+            <?php } ?> 
     </div>
     <!-- Footer -->
     <?php include("includes/footer.php") ?>

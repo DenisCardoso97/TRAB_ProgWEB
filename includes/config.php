@@ -22,19 +22,26 @@
   `cpfAdm` VARCHAR(15) NOT NULL,
   FOREIGN KEY (cpfAdm) REFERENCES usuarios(cpf),
   PRIMARY KEY (`cpfAdm`)
-);");
+);");*/
 
 $db->exec("CREATE TABLE IF NOT EXISTS `passagens` (
-  `valor` DOUBLE NOT NULL,
-  `idPassgem` INTEGER AUTOINCREMENT NOT NULL,
+  `valor` NUMERIC NOT NULL,
+  `idPassagem` INTEGER PRIMARY KEY AUTOINCREMENT,
   `origem` VARCHAR NOT NULL,
   `destino` VARCHAR NOT NULL,
   `dataSaida` VARCHAR(10),
   `dataChegada` VARCHAR(16),
   `cpfDono` VARCHAR (15),
   `classe` VARCHAR (10) NOT NULL,
-  FOREIGN KEY(cpfDono) REFERENCES usuarios(cpf),
-  PRIMARY KEY (`idPassagem`)
-);");*/
+  FOREIGN KEY(`cpfDono`) REFERENCES usuarios(`cpf`)
+);");
+
+$db->exec("INSERT INTO passagens (
+  valor,origem,destino,dataSaida,classe
+  ) 
+  VALUES (
+  '1000', 'Maringa', 'Campo Grande', '2019-11-27', 'Primeira'
+);");
+
   $db->enableExceptions(true);
 ?>
