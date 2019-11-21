@@ -1,3 +1,8 @@
+<!-- Styles e Scrips --> 	
+<?php include("includes/head.php") ?>
+
+<?php include_once("includes/config.php"); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,18 +27,54 @@
 	</style>
 </head>
 <body>
-	<?php if (isset($_POST['salvarSenha'])) {
-		// TODO: alterar senha banco
-		echo "<script>alert('Senha alterada!');</script>";
-	} ?>
-	<?php if (isset($_POST['salvarCampos'])) {
-		// TODO: alterar campos banco
-		echo "<script>alert('Campo(s) alterado(s)!');</script>";
-	} ?>
 	<div>
 		<!-- Styles e Scrips -->
 		<?php include("includes/header.php") ?>
 	</div>
+
+	<?php if (isset($_POST['salvarSenha'])) {
+		
+		$stmt = $db->prepare("UPDATE usuarios SET password = ? WHERE cpf = ?" );
+		$stmt->bindvalue(1, openssl_encrypt($_POST["NovaSenha"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
+		$stmt->bindvalue(2, $user["cpf"]);
+
+		if ($_POST["NovaSenha"] === '') {
+			echo "<script>alert('Senha inválida!');</script>";
+		} else {
+
+			try {
+            	$result = $stmt->execute();
+       		} catch (Throwable $th) {
+           		echo "<script>alert('Erro!');</script>";
+        	}
+			echo "<script>alert('Senha alterada!');</script>";
+
+		}
+
+	} ?>
+	<?php if (isset($_POST['salvarCampos'])) {
+
+		$stmt = $db->prepare("UPDATE usuarios SET name = ?, email = ?, phone = ?, birthdate = ? WHERE cpf = ?" );
+		$stmt->bindvalue(1, $_POST["Nome"], SQLITE3_TEXT);
+		$stmt->bindvalue(2, $_POST["Email"], SQLITE3_TEXT);
+		$stmt->bindvalue(3, $_POST["Telefone"], SQLITE3_TEXT);
+		$stmt->bindvalue(4, $_POST["Data"], SQLITE3_TEXT);
+		$stmt->bindvalue(5, $user['cpf']);
+
+        try {
+            $result = $stmt->execute();
+        } catch (Throwable $th) {
+            echo "<script>alert('Erro!');</script>";
+        }
+
+        $user['name'] = $_POST["Nome"];
+        $user['email'] = $_POST["Email"];
+        $user['phone'] = $_POST["Telefone"];
+        $user['birthdate'] = $_POST["Data"];
+        $_SESSION['usuario'] = $user;
+
+        echo "<script>alert('Campo(s) alterado(s)!');</script>";
+	} ?>
 
 	<div class="container d-flex flex-column justify-content-between align-items-center">
 		<div class="perfil">
@@ -73,7 +114,7 @@
 					<form method="POST">
 						<div class="form-group">
 							<label>Senha: </label>
-							<input class="form-control bg-white" type="password" name="Senha">
+							<input class="form-control bg-white" type="password" name="NovaSenha">
 						</div>
 						<button type="submit" class="btn btn-danger" name="salvarSenha">Salvar</button>
 						<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
