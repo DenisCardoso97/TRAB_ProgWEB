@@ -32,6 +32,7 @@
 					<?php } else {
 							if ($user['admin'] === 'true') { ?>
 								<a class="nav-item nav-link" href="adicionarPassagem.php">Adicionar Passagens</a>
+								<a class="nav-item nav-link" href="alterarPassagem.php">Alterar Passagens</a>
 						<?php }	?>				
 						<a class="nav-item nav-link" href="logout.php">Sair</a>
 					<?php } ?>
