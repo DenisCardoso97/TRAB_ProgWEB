@@ -24,7 +24,6 @@
 
         if (isset($_SESSION["usuario"])) {
             header("Location: index.php");
-            die();
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,8 +41,9 @@
               header("Location: login.php");
               exit();
             } catch (Throwable $th) {
-              echo "<script>alert('Email já cadastrado!');</script>";
+              echo "<script>alert('Usuário já cadastrado!');</script>";
             }
+            echo "<script>alert('Cadastrado com sucesso!');</script>";
         }
     ?>
 

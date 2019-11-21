@@ -29,7 +29,10 @@
   					<?php if (!isset($_SESSION['usuario'])) { ?>
 						<a class="nav-item nav-link" href="login.php">Login </a>
 						<a class="nav-item nav-link" href="cadastrar.php">Cadastrar</a>
-					<?php } else { ?>
+					<?php } else {
+							if ($user['admin'] === 'true') { ?>
+								<a class="nav-item nav-link" href="adicionarPassagem.php">Adicionar Passagens</a>
+						<?php }	?>				
 						<a class="nav-item nav-link" href="logout.php">Sair</a>
 					<?php } ?>
 			</div>
