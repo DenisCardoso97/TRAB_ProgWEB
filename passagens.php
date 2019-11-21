@@ -3,7 +3,7 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['procurar'])) {
         $Passagens = $db->query("
-        SELECT origem, destino, dataSaida FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."'
+        SELECT origem, destino, dataSaida, horarioSaida, horarioChegada FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."'
         ");
     }
 ?>
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="d-flex flex-column">
-                            <label for="dataSaida">Data da passagem</label>
+                            <label for="dataSaida">Data da passagem *</label>
                             <input type="date" name="dataSaida" required>
                         </div>
 
@@ -91,8 +91,10 @@
                   <tr>
                     <th scope="col">Origem</th>
                     <th scope="col">Destino</th>
-                    <th scope="col">Data de Saida</th>
-                    <th scope="col">Escolher</th>
+                    <th scope="col">Data de saida do vôo</th>
+                    <th scope="col">Horário prevista de ida</th>
+                    <th scope="col">Horário prevista de chegada</th>
+                    <th scope="col">Reservar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,10 +105,12 @@
                           <td><?php echo $row['origem']; ?></td>
                           <td><?php echo $row['destino']; ?></td>
                           <td><?php echo $row['dataSaida'];?></td>
+                          <td><?php echo $row['horarioSaida'];?></td>
+                          <td><?php echo $row['horarioChegada'];?></td>
                           <td>
                             <form method="POST">
                                <input type="hidden" name="escolher">
-                               <button type="submit">Escolher</button>
+                               <button type="submit">Reservar</button>
                             </form>       
                           </td> 
                         </tr>

@@ -13,6 +13,7 @@
     `name` VARCHAR NOT NULL,
     `password` VARCHAR NOT NULL,
     `birthdate` VARCHAR(10),
+    `admin` BOOLEAN DEFAULT false,
     `phone` VARCHAR(16),
     PRIMARY KEY (`cpf`)
   );");
@@ -29,19 +30,14 @@ $db->exec("CREATE TABLE IF NOT EXISTS `passagens` (
   `idPassagem` INTEGER PRIMARY KEY AUTOINCREMENT,
   `origem` VARCHAR NOT NULL,
   `destino` VARCHAR NOT NULL,
-  `dataSaida` VARCHAR(10),
-  `dataChegada` VARCHAR(16),
+  `dataSaida` VARCHAR(10) NOT NULL,
+  `horarioSaida` VARCHAR(5) NOT NULL,
+  `horarioChegada` VARCHAR(5) NOT NULL,
   `cpfDono` VARCHAR (15),
   `classe` VARCHAR (10) NOT NULL,
-  FOREIGN KEY(`cpfDono`) REFERENCES usuarios(`cpf`)
+  FOREIGN KEY(`cpfDono`) REFERENCES usuarios(`cpf`),
+  UNIQUE(dataSaida, horarioSaida, origem)
 );");
 
-$db->exec("INSERT INTO passagens (
-  valor,origem,destino,dataSaida,classe
-  ) 
-  VALUES (
-  '1000', 'Maringa', 'Campo Grande', '2019-11-27', 'Primeira'
-);");
-
-  $db->enableExceptions(true);
+  $db->enableExceptions(true);  
 ?>
