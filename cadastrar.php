@@ -8,7 +8,7 @@
 <html lang="pt-br">
 <head>
     <title>Cadastrar</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastrar.css">
 
     <style>
         .container {
@@ -24,7 +24,6 @@
 
         if (isset($_SESSION["usuario"])) {
             header("Location: index.php");
-            die();
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -35,13 +34,15 @@
             $stmt->bindValue(4, openssl_encrypt($_POST["password"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
             $stmt->bindValue(5, $_POST["birthdate"], SQLITE3_TEXT);
             $stmt->bindValue(6, $_POST["phone"], SQLITE3_TEXT);
+            // $stmt->bindValue(7, $_POST["admin"], SQLITE3_TEXT);
 
             try {
               $result = $stmt->execute();
+              echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
               header("Location: login.php");
               exit();
             } catch (Throwable $th) {
-              echo "<script>alert('Email já cadastrado!');</script>";
+              echo "<script>alert('Usuário já cadastrado!');</script>";
             }
         }
     ?>
@@ -88,6 +89,10 @@
                         <label for="password">Confirme sua senha</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Confirme sua Senha">
                     </div>
+                    <!-- <div class="form-group">
+                        <label for="admin">admin</label>
+                        <input type="text" class="form-control" name="admin">
+                    </div> -->
 
                     <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
                     

@@ -25,11 +25,16 @@
   				<div class="navbar-right">
   					<span style="color: white">Olá: </span><a href="perfil.php"><strong><?php echo $user['name']; ?></strong></a>
   				</div>
+  					<a class="nav-item nav-link" href="minhasPassagens.php">Minhas Passagens</a>
   				<?php } ?>
   					<?php if (!isset($_SESSION['usuario'])) { ?>
 						<a class="nav-item nav-link" href="login.php">Login </a>
 						<a class="nav-item nav-link" href="cadastrar.php">Cadastrar</a>
-					<?php } else { ?>
+					<?php } else {
+							if ($user['admin'] === 'true') { ?>
+								<a class="nav-item nav-link" href="adicionarPassagens.php">Adicionar Passagens</a>
+								<a class="nav-item nav-link" href="alterarPassagens.php">Lista de Passagens</a>
+						<?php }	?>				
 						<a class="nav-item nav-link" href="logout.php">Sair</a>
 					<?php } ?>
 			</div>

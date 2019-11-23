@@ -1,3 +1,8 @@
+<!-- Styles e Scrips --> 	
+<?php include("includes/head.php") ?>
+
+<?php include_once("includes/config.php"); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +29,63 @@
 <body>
 	<div>
 		<!-- Styles e Scrips -->
-		<?php include("includes/header.php") ?>
+		<?php include("includes/header.php"); 
+			if (!isset($user)) {
+        		header("Location: index.php");
+     		 }
+		?>
 	</div>
+
+	<?php if (isset($_POST['salvarSenha'])) {
+
+		
+		$stmt = $db->prepare("UPDATE usuarios SET password = ? WHERE cpf = ?" );
+		$stmt->bindvalue(1, openssl_encrypt($_POST["NovaSenha"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
+		$stmt->bindvalue(2, $user["cpf"]);
+
+		if ($_POST["NovaSenha"] === '') {
+			echo "<script>alert('Senha inválida!');</script>";
+		} else {
+
+			try {
+            	$result = $stmt->execute();
+       		} catch (Throwable $th) {
+           		echo "<script>alert('Erro!');</script>";
+        	}
+			echo "<script>alert('Senha alterada!');</script>";
+
+		}
+
+	} ?>
+	<?php if (isset($_POST['salvarCampos'])) {
+
+		$stmt = $db->prepare("UPDATE usuarios SET name = ?, email = ?, phone = ?, birthdate = ? WHERE cpf = ?" );
+		$stmt->bindvalue(1, $_POST["Nome"], SQLITE3_TEXT);
+		$stmt->bindvalue(2, $_POST["Email"], SQLITE3_TEXT);
+		$stmt->bindvalue(3, $_POST["Telefone"], SQLITE3_TEXT);
+		$stmt->bindvalue(4, $_POST["Data"], SQLITE3_TEXT);
+		$stmt->bindvalue(5, $user['cpf']);
+
+        try {
+            $result = $stmt->execute();
+        } catch (Throwable $th) {
+            echo "<script>alert('Erro!');</script>";
+        }
+
+        $user['name'] = $_POST["Nome"];
+        $user['email'] = $_POST["Email"];
+        $user['phone'] = $_POST["Telefone"];
+        $user['birthdate'] = $_POST["Data"];
+        $_SESSION['usuario'] = $user;
+
+        echo "<script>alert('Campo(s) alterado(s)!');</script>";
+	} ?>
 
 	<div class="container d-flex flex-column justify-content-between align-items-center">
 		<div class="perfil">
 			<h6 class="display-4">Perfil</h6>
 		</div>
 		
-
-
 		<?php if(!isset($_POST['alterar'])){ ?>
 
 			<div class="form-div">
@@ -44,15 +96,35 @@
 					</div>
 					<div class="form-group">
 						<label>E-mail: </label>
-						<input class="form-control bg-white" type="text" readonly name="Email" value="<?php echo $user['email'];?>">
+						<input class="form-control bg-white" type="email" readonly name="Email" value="<?php echo $user['email'];?>">
 					</div>
 					<div class="form-group">
-						<label>Senha: </label>
-						<input class="form-control bg-white" type="password" readonly name="Senha" value="">
+						<label>CPF: (Não pode ser mudado) </label>
+						<input class="form-control bg-white" type="text" readonly name="CPF" value="<?php echo $user['cpf'];?>">
+					</div>
+					<div class="form-group">
+						<label>Telefone: </label>
+						<input class="form-control bg-white" type="text" readonly name="Telefone" value="<?php echo $user['phone'];?>">
+					</div>
+					<div class="form-group">
+						<label>Data de aniversário: </label>
+						<input class="form-control bg-white" type="text" readonly name="Data" value="<?php echo $user['birthdate'];?>">
 					</div>
 					<button type="submit" class="btn btn-primary" name="alterar">Alterar Campos</button>
+					<button type="submit" class="btn btn-primary" name="alterar" value="senha">Alterar Senha</button>
 				<form>
 			</div>
+			<?php } else if ($_POST['alterar'] === 'senha') { ?>
+				<div class="form-div">
+					<form method="POST">
+						<div class="form-group">
+							<label>Senha: </label>
+							<input class="form-control bg-white" type="password" name="NovaSenha">
+						</div>
+						<button type="submit" class="btn btn-danger" name="salvarSenha">Salvar</button>
+						<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
+					</form>
+				</div>
 			<?php } else { ?>
 			<div class="form-div">
 				<form method="POST">
@@ -62,15 +134,20 @@
 					</div>
 					<div class="form-group">
 						<label>E-mail: </label>
-						<input class="form-control bg-white" type="text" name="Email" value="<?php echo $user['email'];?>">
+						<input class="form-control bg-white" type="email" name="Email" value="<?php echo $user['email'];?>">
 					</div>
 					<div class="form-group">
-						<label>Senha: </label>
-						<input class="form-control bg-white" type="password" name="Senha" value="">
+						<label>Telefone: </label>
+						<input class="form-control bg-white" type="text" name="Telefone" value="<?php echo $user['phone'];?>">
 					</div>
-					<button type="submit" class="btn btn-danger" name="salvar">Salvar</button>
-					<?php } ?>
+					<div class="form-group">
+						<label>Data de aniversário: </label>
+						<input class="form-control bg-white" type="date" name="Data" value="<?php echo $user['birthdate'];?>">
+					</div>
+					<button type="submit" class="btn btn-danger" name="salvarCampos">Salvar</button>
+					<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
 				</form>	
+				<?php } ?>
 			</div>
 	</div>
 	<!-- Footer -->

@@ -1,3 +1,16 @@
+<?php include_once("includes/config.php"); ?>
+
+<?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['procurar'])) {
+        $Passagens = $db->query("
+        SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada, qntdAssentos FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."' AND qntdAssentos > 0
+        ");
+    }
+
+    
+
+?>
+
 <!-- Tela de passagens -->
 <!DOCTYPE html>
 <html>
@@ -33,8 +46,29 @@
 <body>
     <!-- Header das páginas -->
 	<div>
-        <?php include("includes/header.php"); ?>  
+        <?php include("includes/header.php"); 
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['reservar'])) {
+            if (!isset($user)) {
+                echo "<script>alert('Você deve estar logado para reservar passagens!');</script>";
+            } else {
+                $stmt = $db->prepare("INSERT INTO usuariosPassagens (idPassagem, cpfDono) VALUES (?,?)");
+                $stmt->bindvalue(1, $_POST["idPassagem"], SQLITE3_TEXT);
+                $stmt->bindvalue(2, $user["cpf"]);
+
+                try {
+                    $result = $stmt->execute();
+                    echo "<script>alert('Passagem reservada com sucesso!');</script>";
+                } catch (Throwable $th) {
+                    echo "<script>alert('Erro, talvez você esteja tentando adicionar a mesma passagem!');</script>";
+                }
+
+                $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos-1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
+            }
+        }    
+        ?>  
     </div>
+
     <!-- justify-content-center align-items-center -->
 	<div class="container d-flex flex-column justify-content-between align-items-center">      
         <div class="passagens">
@@ -42,42 +76,74 @@
         </div>
         <?php 
             if (!isset($_POST['procurar'])) {
-                ?>
-                <div class="p-2">
-                    <form method="POST" class="form-div">
-                        <div>
-                            <label for="">origem</label>
-                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                                <option value="" disabled selected>- Selecione Origem - </option>
-                                <option value="campogrande ">Campo Grande</option>
-                                <option value="maringa">Maringa</option>
-                            </select>
-                        </div>
+        ?>
+            <div class="p-2">
+                <form method="POST" class="form-div">
+                    <div>
+                        <label for="origem">Origem *</label>
+                        <select name="origem" class="browser-default custom-select custom-select-lg mb-3" required>
+                            <option value="" disabled selected>- Selecione Origem - </option>
+                            <option value="Campo Grande">Campo Grande</option>
+                            <option value="Maringa">Maringa</option>
+                        </select>
+                    </div>
 
-                        <div>
-                            <label for="">destino</label>
-                            <select name="" id="" class="browser-default custom-select custom-select-lg mb-3">
-                                <option value="">- Selecione Destino - </option>
-                                <option value="campogrande ">Campo Grande</option>
-                                <option value="maringa">Maringa</option>
-                            </select>
-                        </div>
+                    <div>
+                        <label for="destino">Destino *</label>
+                        <select name="destino" class="browser-default custom-select custom-select-lg mb-3" required>
+                            <option value="">- Selecione Destino - </option>
+                            <option value="Campo Grande">Campo Grande</option>
+                            <option value="Maringa">Maringa</option>
+                        </select>
+                    </div>
 
-                        <div class="d-flex flex-column">
-                            <label for="">Data da passagem</label>
-                            <input type="date">
-                        </div>
+                    <div class="d-flex flex-column">
+                        <label for="dataSaida">Data da passagem *</label>
+                        <input type="date" name="dataSaida" required>
+                    </div>
 
-                        <div class="btnn d-flex flex-column">
-                            <button type="submit" class="btn btn-primary" name="procurar">Submit</button>
-                        </div>
-                    </form>
-                </div> 
-            <?php
-            } else {
-                echo 'entrei 2';
-            }
-            ?> 
+                    <div class="btnn d-flex flex-column">
+                        <input type="hidden" name="procurar">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div> 
+        <?php
+        } else { 
+        ?>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Origem</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Data de saida do vôo</th>
+                    <th scope="col">Horário prevista de ida</th>
+                    <th scope="col">Horário prevista de chegada</th>
+                    <th scope="col">Reservar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        while($row = $Passagens->fetchArray()){
+                    ?>
+                        <tr>
+                            <td><?php echo $row['origem']; ?></td>
+                            <td><?php echo $row['destino']; ?></td>
+                            <td><?php echo $row['dataSaida'];?></td>
+                            <td><?php echo $row['horarioSaida'];?></td>
+                            <td><?php echo $row['horarioChegada'];?></td>
+                            <td>
+                            <form method="POST">
+                                <input type="hidden" name="reservar">
+                                <input type="hidden" name="idPassagem" value="<?php echo $row["idPassagem"]; ?>">
+                               <button type="submit">Reservar</button>
+                            </form>       
+                          </td> 
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } ?> 
     </div>
     <!-- Footer -->
     <?php include("includes/footer.php") ?>
