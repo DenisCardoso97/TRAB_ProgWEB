@@ -38,12 +38,12 @@
 
             try {
               $result = $stmt->execute();
+              echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
               header("Location: login.php");
               exit();
             } catch (Throwable $th) {
               echo "<script>alert('Usuário já cadastrado!');</script>";
             }
-            echo "<script>alert('Cadastrado com sucesso!');</script>";
         }
     ?>
 

@@ -18,13 +18,6 @@
     PRIMARY KEY (`cpf`)
   );");
 
-//Tabelas a serem resolvidas
-/*$db->exec("CREATE TABLE IF NOT EXISTS `admin` (
-  `cpfAdm` VARCHAR(15) NOT NULL,
-  FOREIGN KEY (cpfAdm) REFERENCES usuarios(cpf),
-  PRIMARY KEY (`cpfAdm`)
-);");*/
-
 $db->exec("CREATE TABLE IF NOT EXISTS `passagens` (
   `valor` NUMERIC NOT NULL,
   `idPassagem` INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,11 +26,17 @@ $db->exec("CREATE TABLE IF NOT EXISTS `passagens` (
   `dataSaida` VARCHAR(10) NOT NULL,
   `horarioSaida` VARCHAR(5) NOT NULL,
   `horarioChegada` VARCHAR(5) NOT NULL,
-  `cpfDono` VARCHAR (15),
   `classe` VARCHAR (10) NOT NULL,
-  FOREIGN KEY(`cpfDono`) REFERENCES usuarios(`cpf`),
   UNIQUE(dataSaida, horarioSaida, origem)
 );");
+
+$db->exec("CREATE TABLE IF NOT EXISTS `usuariosPassagens` (
+  `idPassagem` INTEGER,
+  `cpfDono` VARCHAR (15),
+  FOREIGN KEY(`idPassagem`) REFERENCES passagens(`idPassagem`),
+  FOREIGN KEY(`cpfDono`) REFERENCES usuarios(`cpf`),
+  PRIMARY KEY(`idPassagem`, `cpfDono`)
+)");
 
   $db->enableExceptions(true);  
 ?>

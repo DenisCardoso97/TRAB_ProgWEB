@@ -26,8 +26,7 @@
 
             try {
               $result = $stmt->execute();
-              header("Location: adicionarPassagem.php");
-              exit();
+              echo "<script>alert('Passagem adicionada com sucesso!');</script>";
             } catch (Throwable $th) {
               echo "<script>alert('Passagem já cadastrada!');</script>";
             }

@@ -1,4 +1,4 @@
-<!-- Styles e Scrips --> 	
+<!-- Styles e Scrips -->    
 <?php include("includes/head.php") ?>
 
 <?php include_once("includes/config.php"); ?>
@@ -6,24 +6,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		
-	</title>
+    <title>
+        
+    </title>
 </head>
 <body style="margin-top: 20vh;">
-	<div>
-		<?php include("includes/header.php"); ?>
-	</div>
-	
-	<?php if (($_SERVER["REQUEST_METHOD"] === "POST") && ($_POST["acao"] === "delete")) {
-    	$db->exec("DELETE FROM Passagens WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
-      echo "<script>alert('Passagem de id: ". $_POST['idPassagem'] ." deletada!');</script>";
-  	}
+    <div>
+        <?php include("includes/header.php"); ?>
+    </div>
+    
+    <?php if (($_SERVER["REQUEST_METHOD"] === "POST") && ($_POST["acao"] === "delete")) {
+        $db->exec("DELETE FROM usuariosPassagens WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
+    }
 
-  	$Passagens = $db->query('SELECT * FROM passagens'); 
-  	?>
-    <?php if (isset($_SESSION['usuario']) && $user['admin'] === 'true') { ?>
-  	<table class="table">
+    $Passagens = $db->query("SELECT * FROM usuariosPassagens INNER JOIN passagens ON usuariosPassagens.idPassagem = passagens.idPassagem WHERE usuariosPassagens.cpfDono = '".$user['cpf']."'"); 
+    ?>
+    <table class="table">
     <thead>
       <tr>
         <th>Id</th>
@@ -34,7 +32,7 @@
         <th>Horario de Saida</th>
         <th>Horario de Chegada</th>
         <th>Classe</th>
-        <th>Deletar</th>
+        <th>Remover Passagem</th>
       </tr>
     </thead>
     <tbody>
@@ -54,16 +52,13 @@
                 <form method="post">
                    <input type="hidden" name="acao" value="delete">
                    <input type="hidden" name="idPassagem" value="<?php echo $row["idPassagem"]; ?>">
-                   <button type="submit">Deletar</button>
+                   <button type="submit">Remover Passagem</button>
                 </form>       
               </td> 
             </tr>
           <?php } ?>
-    	</tbody>
-  	</table>
-  <?php } else {
-    header("Location: index.php");
-  } ?>
+        </tbody>
+    </table>
 </body>
 <!-- Footer -->
     <?php include("includes/footer.php") ?>
