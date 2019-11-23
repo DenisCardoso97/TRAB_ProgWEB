@@ -39,6 +39,7 @@
           } else {
             if (isset($_SESSION["usuario"])) {
               header("Location: index.php");
+              exit();
             }
           }
         ?>
@@ -53,12 +54,12 @@
                     <h1 class="text-center">Login</h1>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
                         <small id="emailHelp" class="form-text text-light">Jamais iremos compartilhar seu email com ninguém.</small>
                     </div>
                     <div class="form-group">
                         <label for="password">Senha</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">

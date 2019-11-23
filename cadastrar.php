@@ -24,6 +24,7 @@
 
         if (isset($_SESSION["usuario"])) {
             header("Location: index.php");
+            exit();
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -60,7 +61,7 @@
 
                     <div class="form-group">
                         <label for="name">Nome</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nome completo">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nome completo" required>
                     </div>
 
                     <div class="form-group">
@@ -75,22 +76,22 @@
 
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
+                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Entre com seu endereço de e-mail">
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Entre com seu endereço de e-mail" required>
                     </div>
 
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Confirme sua senha</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Confirme sua Senha">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Confirme sua Senha" required>
                     </div>
 
                     <button type="submit" class="btn btn-success btn-block">Cadastrar</button>

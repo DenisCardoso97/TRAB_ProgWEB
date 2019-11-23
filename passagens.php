@@ -5,6 +5,12 @@
         $Passagens = $db->query("
         SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada, qntdAssentos FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."' AND qntdAssentos > 0
         ");
+
+        $a = $db->query("
+        SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada, qntdAssentos FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."' AND qntdAssentos > 0
+        ");
+
+        $raw = $a->fetchArray();
     }
 ?>
 
@@ -18,7 +24,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
-        .container {
+        .tabela {
             min-height: 92vh;
             margin-top: 77px;
         }
@@ -67,7 +73,7 @@
     </div>
 
     <!-- justify-content-center align-items-center -->
-	<div class="container d-flex flex-column justify-content-between align-items-center">      
+	<div class="tabela d-flex flex-column align-items-center">      
         <div class="passagens">
             <h6 class="display-4">Passagens</h6>
         </div>
@@ -108,9 +114,13 @@
         <?php
         } else { 
         ?>
-            <table class="table">
+        <?php  
+          if ($raw['idPassagem'] == '') { ?>
+            <h3 style="margin: 20vh 0px; color: red ">Não existem passagens com essas informações</h3>
+        <?php } else { ?>
+            <table class="align-middle table">
                 <thead>
-                  <tr>
+                  <tr style="text-align: center">
                     <th scope="col">Origem</th>
                     <th scope="col">Destino</th>
                     <th scope="col">Data de saida do vôo</th>
@@ -123,7 +133,7 @@
                     <?php 
                         while($row = $Passagens->fetchArray()){
                     ?>
-                        <tr>
+                        <tr style="text-align: center">
                             <td><?php echo $row['origem']; ?></td>
                             <td><?php echo $row['destino']; ?></td>
                             <td><?php echo $row['dataSaida'];?></td>
@@ -140,7 +150,7 @@
                     <?php } ?>
                 </tbody>
             </table>
-        <?php } ?> 
+        <?php }} ?> 
     </div>
     <!-- Footer -->
     <?php include("includes/footer.php") ?>

@@ -32,6 +32,7 @@
 		<?php include("includes/header.php"); 
 			if (!isset($user)) {
         		header("Location: index.php");
+        		exit();
      		 }
 		?>
 	</div>
