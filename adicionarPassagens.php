@@ -15,7 +15,7 @@
         include("includes/header.php");
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $stmt = $db->prepare("INSERT INTO passagens (valor,origem,destino,dataSaida,horarioSaida,horarioChegada,classe) VALUES (?,?,?,?,?,?,?)");
+            $stmt = $db->prepare("INSERT INTO passagens (valor,origem,destino,dataSaida,horarioSaida,horarioChegada,classe,qntdAssentos) VALUES (?,?,?,?,?,?,?,?)");
             $stmt->bindValue(1, $_POST["valor"], SQLITE3_TEXT);
             $stmt->bindValue(2, $_POST["origem"], SQLITE3_TEXT);
             $stmt->bindValue(3, $_POST["destino"], SQLITE3_TEXT);
@@ -23,6 +23,7 @@
             $stmt->bindValue(5, $_POST["horarioSaida"], SQLITE3_TEXT);
             $stmt->bindValue(6, $_POST["horarioChegada"], SQLITE3_TEXT);
             $stmt->bindValue(7, $_POST["classe"], SQLITE3_TEXT);
+            $stmt->bindValue(8, $_POST["qntdAssentos"], SQLITE3_TEXT);
 
             try {
               $result = $stmt->execute();
@@ -87,6 +88,10 @@
                                 <option value="Primeira Classe">Primeira Classe</option>
                                 <option value="Classe Economica">Classe Econômica</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qntdAssentos">Quantidade de Assentos</label>
+                            <input type="number" class="form-control" name="qntdAssentos" required>
                         </div>
 
                         <button type="submit" class="btn btn-success btn-block">Adicionar</button>

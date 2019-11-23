@@ -27,6 +27,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS `passagens` (
   `horarioSaida` VARCHAR(5) NOT NULL,
   `horarioChegada` VARCHAR(5) NOT NULL,
   `classe` VARCHAR (10) NOT NULL,
+  `qntdAssentos` NUMERIC NOT NULL,
   UNIQUE(dataSaida, horarioSaida, origem)
 );");
 

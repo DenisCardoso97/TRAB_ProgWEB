@@ -29,10 +29,15 @@
 <body>
 	<div>
 		<!-- Styles e Scrips -->
-		<?php include("includes/header.php") ?>
+		<?php include("includes/header.php"); 
+			if (!isset($user)) {
+        		header("Location: index.php");
+     		 }
+		?>
 	</div>
 
 	<?php if (isset($_POST['salvarSenha'])) {
+
 		
 		$stmt = $db->prepare("UPDATE usuarios SET password = ? WHERE cpf = ?" );
 		$stmt->bindvalue(1, openssl_encrypt($_POST["NovaSenha"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);

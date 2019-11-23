@@ -3,9 +3,11 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['procurar'])) {
         $Passagens = $db->query("
-        SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."'
+        SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada, qntdAssentos FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."' AND qntdAssentos > 0
         ");
     }
+
+    
 
 ?>
 
@@ -60,6 +62,8 @@
                 } catch (Throwable $th) {
                     echo "<script>alert('Erro, talvez você esteja tentando adicionar a mesma passagem!');</script>";
                 }
+
+                $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos-1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
             }
         }    
         ?>  

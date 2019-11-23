@@ -6,11 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		
-	</title>
+	<title>Lista de Passagens</title>
+  <style type="text/css">
+    .listaPassagens {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      background-color: rgba(230, 255, 255, 0.3);
+      
+    }
+  </style>
 </head>
-<body style="margin-top: 20vh;">
+<body style="margin-top: 12vh">
+    <div class="listaPassagens">
+      <h6 class="display-4">Lista de Passagens</h6>
+    </div>
 	<div>
 		<?php include("includes/header.php"); ?>
 	</div>
@@ -34,6 +43,7 @@
         <th>Horario de Saida</th>
         <th>Horario de Chegada</th>
         <th>Classe</th>
+        <th>Quantidade de assentos restantes</th>
         <th>Deletar</th>
       </tr>
     </thead>
@@ -42,7 +52,7 @@
             while($row = $Passagens->fetchArray()){
           ?>
             <tr>
-              <td><?php echo $row['idPassagem']; ?></td>
+              <td><?php echo $row['idPassagem']; ?></td>  
               <td><?php echo $row['valor']; ?></td>
               <td><?php echo $row['origem']; ?></td>
               <td><?php echo $row['destino']; ?></td>
@@ -50,6 +60,7 @@
               <td><?php echo $row['horarioSaida']; ?></td>
               <td><?php echo $row['horarioChegada']; ?></td>
               <td><?php echo $row['classe']; ?></td>
+              <td><?php echo $row['qntdAssentos']; ?></td>
               <td>
                 <form method="post">
                    <input type="hidden" name="acao" value="delete">
