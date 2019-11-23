@@ -8,6 +8,7 @@
 <html lang="pt-br">
 <head>
     <title>Cadastrar</title>
+
     <link rel="stylesheet" href="css/login.css">
 
     <style>
@@ -27,6 +28,10 @@
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_POST["password"] != $_POST["senha"]) {
+                echo "<script>alert('Senhas não são iguais!');</script>";
+                header("Location: cadastrar.php");
+            }
             $stmt = $db->prepare("INSERT INTO Usuarios (email,cpf,name,password,birthdate,phone) VALUES (?,?,?,?,?,?)");
             $stmt->bindValue(1, $_POST["email"], SQLITE3_TEXT);
             $stmt->bindValue(2, $_POST["cpf"], SQLITE3_TEXT);
@@ -34,7 +39,6 @@
             $stmt->bindValue(4, openssl_encrypt($_POST["password"], "aes128", "1234", 0, "1234567812345678"), SQLITE3_TEXT);
             $stmt->bindValue(5, $_POST["birthdate"], SQLITE3_TEXT);
             $stmt->bindValue(6, $_POST["phone"], SQLITE3_TEXT);
-            // $stmt->bindValue(7, $_POST["admin"], SQLITE3_TEXT);
 
             try {
               $result = $stmt->execute();
@@ -81,18 +85,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Senha</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Confirme sua senha</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Confirme sua Senha">
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="admin">admin</label>
-                        <input type="text" class="form-control" name="admin">
-                    </div> -->
 
                     <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
                     

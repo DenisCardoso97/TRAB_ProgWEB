@@ -16,7 +16,7 @@
     }
     </style>
 </head>
-<body style="margin-top: 12vh;">
+<body style="margin-top: 12.5vh;">
     <div class="minhasPassagens">
       <h6 class="display-4">Minhas Passagens</h6>
     </div>
@@ -33,7 +33,7 @@
         header("Location: index.php");
       }
     $Passagens = $db->query("SELECT * FROM usuariosPassagens INNER JOIN passagens ON usuariosPassagens.idPassagem = passagens.idPassagem WHERE usuariosPassagens.cpfDono = '".$user['cpf']."'"); 
-      if (!isset($Passagens)) { 
+      if (!isset($user)) { 
     ?>
       <h1>NÃO TEM PASSAGENS</h1>
     <?php } ?>

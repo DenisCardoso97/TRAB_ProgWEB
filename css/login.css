@@ -10,6 +10,7 @@
     font-weight: bold;
     padding: 50px 60px;
     margin-top: 20vh;
+    background-color: rgba(0,0,0,0.5);
     -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
     box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);

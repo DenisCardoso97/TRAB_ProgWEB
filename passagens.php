@@ -7,6 +7,9 @@
         ");
     }
 
+    $row = $Passagens->fetchArray();
+    echo $row;
+
 ?>
 
 <!-- Tela de passagens -->

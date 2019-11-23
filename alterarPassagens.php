@@ -16,7 +16,7 @@
     }
   </style>
 </head>
-<body style="margin-top: 12vh">
+<body style="margin-top: 12.5vh">
     <div class="listaPassagens">
       <h6 class="display-4">Lista de Passagens</h6>
     </div>

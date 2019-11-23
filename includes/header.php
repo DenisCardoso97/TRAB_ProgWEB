@@ -1,13 +1,15 @@
 <!-- Styles e Scrips -->
 <?php include("includes/head.php") ?>
 
+<!-- Começa a sessão atual -->
 <?php session_start(); ?>
 
 <!-- Header -->
-
 <header>
 	<div>
 		<nav class="nav1 navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="opacity: 0.90;">
+
+			<!-- Aviãozinho -->
 			<a class="navbar-brand" href="index.php"><img src="images/plane.png" alt="" style="width:50px; heigth:50px;"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -38,12 +40,6 @@
 						<a class="nav-item nav-link" href="logout.php">Sair</a>
 					<?php } ?>
 			</div>
-
-			<!-- Search -->
-			<!-- <form class="form-inline">
-			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-			</form> -->
 		</nav>
 	</div>
 </header>
