@@ -6,10 +6,6 @@
         SELECT idPassagem, origem, destino, dataSaida, horarioSaida, horarioChegada, qntdAssentos FROM passagens WHERE origem = '".$_POST["origem"]."' AND destino = '".$_POST["destino"]."' AND dataSaida = '".$_POST['dataSaida']."' AND qntdAssentos > 0
         ");
     }
-
-    $row = $Passagens->fetchArray();
-    echo $row;
-
 ?>
 
 <!-- Tela de passagens -->
