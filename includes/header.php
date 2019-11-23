@@ -33,7 +33,7 @@
 					<?php } else {
 							if ($user['admin'] === 'true') { ?>
 								<a class="nav-item nav-link" href="adicionarPassagens.php">Adicionar Passagens</a>
-								<a class="nav-item nav-link" href="alterarPassagens.php">Alterar Passagens</a>
+								<a class="nav-item nav-link" href="alterarPassagens.php">Lista de Passagens</a>
 						<?php }	?>				
 						<a class="nav-item nav-link" href="logout.php">Sair</a>
 					<?php } ?>

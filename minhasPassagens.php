@@ -6,21 +6,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        
-    </title>
+    <title>Minhas Passagens</title>
+    <style type="text/css">
+      .minhasPassagens {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        background-color: rgba(230, 255, 255, 0.3);
+      
+    }
+    </style>
 </head>
-<body style="margin-top: 20vh;">
+<body style="margin-top: 12vh;">
+    <div class="minhasPassagens">
+      <h6 class="display-4">Minhas Passagens</h6>
+    </div>
     <div>
-        <?php include("includes/header.php"); ?>
+      <?php include("includes/header.php"); ?>
     </div>
     
     <?php if (($_SERVER["REQUEST_METHOD"] === "POST") && ($_POST["acao"] === "delete")) {
         $db->exec("DELETE FROM usuariosPassagens WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
+        $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos+1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
+        echo "<script>alert('Você removeu a passagem de id: ".$_POST['idPassagem']." das suas passagens!');</script>";
     }
-
+      if (!isset($user)) {
+        header("Location: index.php");
+      }
     $Passagens = $db->query("SELECT * FROM usuariosPassagens INNER JOIN passagens ON usuariosPassagens.idPassagem = passagens.idPassagem WHERE usuariosPassagens.cpfDono = '".$user['cpf']."'"); 
+      if (!isset($Passagens)) { 
     ?>
+      <h1>NÃO TEM PASSAGENS</h1>
+    <?php } ?>
+
     <table class="table">
     <thead>
       <tr>
