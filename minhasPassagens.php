@@ -37,7 +37,7 @@
     <?php if (($_SERVER["REQUEST_METHOD"] === "POST") && ($_POST["acao"] === "delete")) {
         $db->exec("DELETE FROM usuariosPassagens WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
         $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos+1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
-        echo "<script>alert('Você removeu a passagem de id: ".$_POST['idPassagem']." das suas passagens!');</script>";
+        echo "<script>alert('Você removeu a passagem da sua lista!');</script>";
     }
       if (!isset($user)) {
         header("Location: index.php");

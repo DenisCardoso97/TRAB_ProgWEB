@@ -113,6 +113,7 @@
 					</div>
 					<button type="submit" class="btn btn-primary" name="alterar">Alterar Campos</button>
 					<button type="submit" class="btn btn-primary" name="alterar" value="senha">Alterar Senha</button>
+					<!-- <button type="submit" class="btn btn-danger" name="alterar" value="senha">Deletar Conta</button> -->
 				<form>
 			</div>
 			<?php } else if ($_POST['alterar'] === 'senha') { ?>
@@ -143,7 +144,7 @@
 					</div>
 					<div class="form-group">
 						<label>Data de aniversário: </label>
-						<input class="form-control bg-white" type="date" name="Data" value="<?php echo $user['birthdate'];?>">
+						<input class="form-control bg-white" type="text" name="Data" value="<?php echo $user['birthdate'];?>">
 					</div>
 					<button type="submit" class="btn btn-danger" name="salvarCampos">Salvar</button>
 					<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>

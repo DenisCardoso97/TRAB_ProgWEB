@@ -53,7 +53,8 @@
 
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['reservar'])) {
             if (!isset($user)) {
-                echo "<script>alert('Você deve estar logado para reservar passagens!');</script>";
+                echo "<script>alert('Você deve estar logado para reservar passagens!');";
+                echo "javascript:window.location='login.php';</script>";
             } else {
                 $stmt = $db->prepare("INSERT INTO usuariosPassagens (idPassagem, cpfDono) VALUES (?,?)");
                 $stmt->bindvalue(1, $_POST["idPassagem"], SQLITE3_TEXT);
@@ -62,11 +63,12 @@
                 try {
                     $result = $stmt->execute();
                     echo "<script>alert('Passagem reservada com sucesso!');</script>";
+                    $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos-1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
                 } catch (Throwable $th) {
-                    echo "<script>alert('Erro, talvez você esteja tentando adicionar a mesma passagem!');</script>";
+                    echo "<script>alert('Erro, talvez você esteja tentando adicionar a mesma passagem!');";
+                    echo "javascript:window.location='passagens.php';</script>";
                 }
 
-                $db->exec("UPDATE passagens SET qntdAssentos = qntdAssentos-1 WHERE idPassagem = '" . $_POST['idPassagem'] . "'");
             }
         }    
         ?>  
