@@ -49,6 +49,7 @@
     $a = $db->query("SELECT * FROM usuariosPassagens INNER JOIN passagens ON usuariosPassagens.idPassagem = passagens.idPassagem WHERE usuariosPassagens.cpfDono = '".$user['cpf']."'");
 
     $raw = $a->fetchArray();
+    //var_dump($raw);
     ?>
 
     <div class="tabela d-flex flex-column align-items-center">

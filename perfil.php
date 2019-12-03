@@ -58,6 +58,13 @@
 		}
 
 	} ?>
+
+	<?php if(isset($_POST['conferirSenha'])) {
+
+		
+
+	} ?>
+
 	<?php if (isset($_POST['salvarCampos'])) {
 
 		$stmt = $db->prepare("UPDATE usuarios SET name = ?, email = ?, phone = ?, birthdate = ? WHERE cpf = ?" );
@@ -113,20 +120,33 @@
 					</div>
 					<button type="submit" class="btn btn-primary" name="alterar">Alterar Campos</button>
 					<button type="submit" class="btn btn-primary" name="alterar" value="senha">Alterar Senha</button>
-					<!-- <button type="submit" class="btn btn-danger" name="alterar" value="senha">Deletar Conta</button> -->
+					<button type="submit" class="btn btn-danger" name="alterar" value="deletar">Deletar Conta</button>
 				<form>
 			</div>
 			<?php } else if ($_POST['alterar'] === 'senha') { ?>
 				<div class="form-div">
 					<form method="POST">
 						<div class="form-group">
-							<label>Senha: </label>
+							<label>Digite a nova senha: </label>
 							<input class="form-control bg-white" type="password" name="NovaSenha">
 						</div>
 						<button type="submit" class="btn btn-danger" name="salvarSenha">Salvar</button>
 						<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
 					</form>
 				</div>
+<!-- ---------------------------------------------------- FINALIZAR IMPLEMENTAÇÃO------------------------------------------------------- -->
+			<?php } else if ($_POST['alterar'] === 'deletar') { ?>
+				<div class="form-div">
+					<form action="perfil.php" method="POST">
+						<div class="form-group">
+							<label>Deletar conta: </label>
+							<input placeholder="Digite sua senha" class="form-control bg-white" type="password" name="conferirSenha">
+						</div>
+						<button type="submit" class="btn btn-danger" name="excluir">Excluir</button>
+						<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
+					</form>
+				</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
 			<?php } else { ?>
 			<div class="form-div">
 				<form method="POST">
