@@ -145,7 +145,7 @@
                             <form method="POST">
                                 <input type="hidden" name="reservar">
                                 <input type="hidden" name="idPassagem" value="<?php echo $row["idPassagem"]; ?>">
-                               <button type="submit">Reservar</button>
+                               <button type="submit" class="btn btn-primary">Reservar</button>
                             </form>       
                           </td> 
                         </tr>

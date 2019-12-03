@@ -78,7 +78,27 @@
                 <form method="post">
                    <input type="hidden" name="acao" value="delete">
                    <input type="hidden" name="idPassagem" value="<?php echo $row["idPassagem"]; ?>">
-                   <button type="submit">Deletar</button>
+                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ExemploModalCentralizado">Deletar</button>
+                   <!-- Modal -->
+                  <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="TituloModalCentralizado">Deseja realmente <strong>Deletar</strong> a passagem?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Ao deletar a passagem não será possível voltar atrás. Tem certeza?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn btn-danger">Remover</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>       
               </td> 
             </tr>
