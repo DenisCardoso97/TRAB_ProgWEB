@@ -59,10 +59,24 @@
 
 	} ?>
 
-	<?php if(isset($_POST['conferirSenha'])) {
+	<?php if(isset($_POST['excluirConta'])) {
 
-		
+		$password = $_POST['conferirSenha']; 
+		$passEncrip = openssl_encrypt($password, "aes128", "1234", 0, "1234567812345678");
+		$cpfUser = $user['cpf'];
 
+
+		$stmt = $db->query("SELECT cpf, password, name FROM usuarios WHERE password = '$passEncrip' AND cpf = '$cpfUser'");
+		$row = $stmt->fetchArray();
+
+		if($row === false){
+			echo "<script>alert('Senha incorreta!');</script>";
+		} else { 
+			$db->exec("DELETE FROM usuarios WHERE cpf = '$cpfUser' AND password = '$passEncrip'");
+			echo "<script>alert('Conta excluída com sucesso!');";
+            echo "javascript:window.location='login.php';</script>";
+            session_destroy();
+		}
 	} ?>
 
 	<?php if (isset($_POST['salvarCampos'])) {
@@ -142,8 +156,8 @@
 							<label>Deletar conta: </label>
 							<input placeholder="Digite sua senha" class="form-control bg-white" type="password" name="conferirSenha">
 						</div>
-						<button type="submit" class="btn btn-danger" name="excluir">Excluir</button>
-						<button type="submit" class="btn btn-secondary" name="cancelar">Cancelar</button>
+						<button type="submit" class="btn btn-danger" name="excluirConta">Excluir</button>
+						<button type="submit" class="btn btn-secondary" name="cancelar" onclick="">Cancelar</button>
 					</form>
 				</div>
 <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
